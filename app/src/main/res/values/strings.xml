@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">StarBasket_Delivery</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_new">New</string>
+    <string name="title_delivered">Delivered</string>
+    <string name="title_cancelled">Cancelled</string>
+    <string name="something_went_wrong_error_message">Something went wrong</string>
+    <string name="order_Id">Order Id:</string>
+</resources>
