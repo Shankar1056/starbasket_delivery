@@ -14,6 +14,6 @@ import retrofit2.http.*;
 public interface ApiRetrofitService {
     @POST(ApiUrl.ORDER_DETAILS)
     @FormUrlEncoded
-    Call<OrderLisModel> getOrderDetails(@Field("user_id") String user_id);
+    Call<OrderLisModel> getOrderDetails(@Field("user_id") String user_id, @Field("delivery_status") String deliveryStatus);
 
 }

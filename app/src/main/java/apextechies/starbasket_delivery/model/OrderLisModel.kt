@@ -1,6 +1,8 @@
 package apextechies.starbasket_delivery.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 class OrderLisModel {
 
@@ -13,7 +15,8 @@ class OrderLisModel {
 
 }
 
-class OrderLidtData {
+@Parcelize
+class OrderLidtData : Parcelable {
     @SerializedName("order_id")
     var order_id: String?= null
     @SerializedName("assign_date")
@@ -31,8 +34,8 @@ class OrderLidtData {
     @SerializedName("userDetails")
     var userDetails: ArrayList<UserDetails>?= null
 }
-
-class UserDetails {
+@Parcelize
+class UserDetails : Parcelable {
     @SerializedName("id")
     var id: String?= null
     @SerializedName("name")
@@ -53,7 +56,8 @@ class UserDetails {
     var status: String?= null
 }
 
-class DeliveryBoyDetails {
+@Parcelize
+class DeliveryBoyDetails : Parcelable {
     @SerializedName("id")
     var id: String?= null
     @SerializedName("name")
@@ -78,7 +82,8 @@ class DeliveryBoyDetails {
     var status: String?= null
 }
 
-class ProdDetails {
+@Parcelize
+class ProdDetails : Parcelable {
     @SerializedName("id")
     var id: String?= null
     @SerializedName("transaction_id")

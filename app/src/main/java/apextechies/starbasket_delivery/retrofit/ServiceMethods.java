@@ -8,7 +8,7 @@ import apextechies.starbasket_delivery.model.OrderLisModel;
  */
 
 public interface ServiceMethods {
-    void OrderHistory(String user_id, DownlodableCallback<OrderLisModel> callback);
+    void OrderHistory(String user_id, String deliveryStatus, DownlodableCallback<OrderLisModel> callback);
 
 
 }

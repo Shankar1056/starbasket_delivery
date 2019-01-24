@@ -8,9 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import apextechies.starbasket_delivery.R
 import apextechies.starbasket_delivery.model.OrderLidtData
-import java.util.ArrayList
+import java.util.*
 
-class OrderDetailsAdapter (private  val pos: Int, private val context: Context, private val list: ArrayList<OrderLidtData>, private val mListener: OnItemClickListener) : RecyclerView.Adapter<OrderDetailsAdapter.MyViewHolder>() {
+class OrderDetailsAdapter(
+    private val context: Context,
+    private val list: ArrayList<OrderLidtData>,
+    private val mListener: OnItemClickListener
+) : RecyclerView.Adapter<OrderDetailsAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var orderId: TextView
@@ -38,23 +42,12 @@ class OrderDetailsAdapter (private  val pos: Int, private val context: Context, 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = list!![position]
-if (pos == 1 && item.delivery_status.equals("1")) {
-    holder.orderId.text = item.order_id
-    holder.cusName.text = item.userDetails!![0].name
-    holder.cusPhone.text = item.userDetails!![0].mobile
-    holder.cusAddress.text = item.userDetails!![0].address
-}else if (pos == 2 && item.delivery_status.equals("2")) {
-    holder.orderId.text = item.order_id
-    holder.cusName.text = item.userDetails!![0].name
-    holder.cusPhone.text = item.userDetails!![0].mobile
-    holder.cusAddress.text = item.userDetails!![0].address
-}else if (pos == 3 && item.delivery_status.equals("3")) {
         holder.orderId.text = item.order_id
         holder.cusName.text = item.userDetails!![0].name
         holder.cusPhone.text = item.userDetails!![0].mobile
         holder.cusAddress.text = item.userDetails!![0].address
 
-}
+
     }
 
 

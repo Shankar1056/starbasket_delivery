@@ -5,44 +5,40 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import apextechies.starbasket.adapter.OrderDetailsAdapter
+import apextechies.starbasket_delivery.model.OrderLidtData
 import apextechies.starbasket_delivery.model.OrderLisModel
 import apextechies.starbasket_delivery.retrofit.DownlodableCallback
 import apextechies.starbasket_delivery.retrofit.RetrofitDataProvider
 import kotlinx.android.synthetic.main.activity_main.*
-import apextechies.starbasket_delivery.model.OrderLidtData
 
 
 class MainActivity : AppCompatActivity() {
 
     var orderList = ArrayList<OrderLidtData>()
+    var newList = ArrayList<OrderLidtData>()
+    var deliveredList = ArrayList<OrderLidtData>()
+    var pendingList = ArrayList<OrderLidtData>()
     var retrofitDataProvider: RetrofitDataProvider? = null
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                setAdapter(1)
+                callCatApi(1) //new
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                setAdapter(2)
+                callCatApi(2) //pending
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-                setAdapter(3)
+                callCatApi(3) //delivered
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
     }
 
-    private fun setAdapter(s: Int) {
-        rv_category.adapter = OrderDetailsAdapter(s, this@MainActivity, orderList, object : OrderDetailsAdapter.OnItemClickListener {
-            override fun onItemClick(pos: Int) {
 
-            }
-
-        })
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,17 +46,23 @@ class MainActivity : AppCompatActivity() {
         retrofitDataProvider = RetrofitDataProvider(this)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         rv_category.layoutManager = LinearLayoutManager(this)
-        callCatApi()
+        callCatApi(1)
 
 
     }
 
-    private fun callCatApi() {
-        retrofitDataProvider!!.OrderHistory("1", object : DownlodableCallback<OrderLisModel> {
+    private fun callCatApi(deliveryStatus: Int) {
+        retrofitDataProvider!!.OrderHistory("1", ""+deliveryStatus ,object : DownlodableCallback<OrderLisModel> {
             override fun onSuccess(result: OrderLisModel?) {
                 if (result != null) {
                     orderList = result.data!!
+                    rv_category.adapter =
+                            OrderDetailsAdapter(this@MainActivity, orderList, object : OrderDetailsAdapter.OnItemClickListener {
+                                override fun onItemClick(pos: Int) {
 
+                                }
+
+                            })
                 }
             }
 

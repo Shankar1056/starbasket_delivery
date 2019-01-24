@@ -47,8 +47,8 @@ public class RetrofitDataProvider extends AppCompatActivity implements ServiceMe
     }
 
     @Override
-    public void OrderHistory(String user_id, final DownlodableCallback<OrderLisModel> callback) {
-        createRetrofitService().getOrderDetails(user_id).enqueue(
+    public void OrderHistory(String user_id, String deliveryStatus, final DownlodableCallback<OrderLisModel> callback) {
+        createRetrofitService().getOrderDetails(user_id, deliveryStatus).enqueue(
                 new Callback<OrderLisModel>() {
                     @Override
                     public void onResponse(@NonNull Call<OrderLisModel> call, @NonNull final Response<OrderLisModel> response) {
